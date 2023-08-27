@@ -12,7 +12,7 @@ char b[100][100];
 
 void getInput()
 {
-    freopen("file.txt", "r", stdin);
+    freopen("LCS.txt", "r", stdin);
    //cout << "Enter m and n: " << endl;
    cin >> m >> n;
 
