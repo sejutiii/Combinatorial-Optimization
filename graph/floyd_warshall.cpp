@@ -8,7 +8,7 @@ int w[n][n];
 int d[n][n];
 int p[n][n];
 string graph[n][2];
-int g_w[n];
+int g_w[n]; // weight on each edge
 string vertex[n];
 
 int indexOf(string s, int numVertex)
@@ -22,16 +22,17 @@ int indexOf(string s, int numVertex)
 
 void initialize(int numVertex)
 {
+    int infinity= inf;
     for(int i=1; i<=numVertex; i++)
     {
         for(int j=1; j<=numVertex; j++)
         {
             d[i][j]= w[i][j];
-            if(i==j || w[i][j]== 100000)
+            if(i==j || w[i][j]== infinity)
             {
                 p[i][j]= 0;
             }
-            else if(i !=j && w[i][j]< 100000)
+            else if(i !=j && w[i][j]< infinity)
             {
                 p[i][j]= i;
             }
@@ -80,7 +81,7 @@ void printpath(int s, int t)
     }
     else if(p[s][t] == s)
     {
-        cout << vertex[s] << " ";
+        cout << vertex[s] << " -> ";
     }
     else{
         printpath(s, p[s][t]);
@@ -97,7 +98,7 @@ void path(string s, string t, int num)
 
     cout << "The shortest path from " << s << " to " << t << " is- ";
     printpath(u, v);
-
+    cout << t;
     cout << endl << "weight= " << d[u][v]<<endl;
 }
 
@@ -175,7 +176,6 @@ int main()
 
     fw(numVertex);
     printMat(numVertex);
-    
     string a, b;
     cout <<"Enter the edges: ";
     cin >> a >> b;
