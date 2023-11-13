@@ -4,14 +4,16 @@
 
 using namespace std;
 
-int w[n][n];
-int d[n][n];
-int p[n][n];
 string graph[n][2];
+int w[n][n];
+int d[n]; // distance
+int p[n]; // parent node
 int g_w[n]; // weight on each edge
 string vertex[n];
+string source, destination;
+int numVertex, numEdge;
 
-int indexOf(string s, int numVertex)
+int indexOf(string s)
 {
     for(int i=1; i<=numVertex; i++)
     {
@@ -102,9 +104,9 @@ void path(string s, string t, int num)
     cout << endl << "weight= " << d[u][v]<<endl;
 }
 
-int main()
+void getInput()
 {
-    int numVertex, numEdge, u, v, index=1;
+    int u, v, index=1;
 
     freopen("input.txt", "r", stdin);
     cin >> numEdge;
@@ -157,27 +159,22 @@ int main()
 
     numVertex= index-1;
 
-    for(int i=1; i<=numVertex; i++)
-    {
-        for(int j=1; j<=numVertex; j++)
-        {
-            if(i==j)
-                w[i][j]= 0;
-            else w[i][j]= inf;
-        }
-    }
+    cin >> source >> destination;
 
     for(int i=1; i<=numEdge; i++)
     {
-        u= indexOf(graph[i][0], numVertex);
-        v= indexOf(graph[i][1], numVertex);
+        u= indexOf(graph[i][0]);
+        v= indexOf(graph[i][1]);
         w[u][v]= g_w[i];
     }
-
-    fw(numVertex);
-    printMat(numVertex);
-    string a, b;
-    cout <<"Enter the edges: ";
-    cin >> a >> b;
-    path(a, b, numVertex);
 }
+
+// int main()
+// {
+//     fw(numVertex);
+//     printMat(numVertex);
+//     string a, b;
+//     cout <<"Enter the edges: ";
+//     cin >> a >> b;
+//     path(a, b, numVertex);
+// }
