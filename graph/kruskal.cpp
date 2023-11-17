@@ -12,7 +12,6 @@ void getInput()
 {
     freopen("file.txt", "r", stdin);
     cin >> numVertices >> numEdges;
-    getchar();
     for(int i=0; i<numVertices; i++)
     {
         char temp;
@@ -26,7 +25,6 @@ void getInput()
         int w;
         cin >> u >> v;
         cin >> w;
-        getchar();
         pair<int, pair<char,char>> edge;
         edge.first= w;
         edge.second.first= u;

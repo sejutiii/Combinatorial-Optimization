@@ -138,9 +138,24 @@ void print_Flow_network()
     }
 }
 
+void print_Residual_network()
+{
+    for(int i=0; i<numVertices; i++)
+    {
+        for(int j=0; j<numVertices; j++)
+        {
+            if(capacity[i][j] != 0)
+            {
+                cout << vertices[i] << " -> " << vertices[j];
+                cout << "  " << capacity[i][j] << endl; 
+            }
+        }
+    }
+}
+
 int main()
 {
-    freopen("ford.txt", "r", stdin);
+    freopen("temp.txt", "r", stdin);
     getInput();
     ford_fulkerson(indexOf(source, numVertices), indexOf(destination, numVertices));
     print_Flow_network();

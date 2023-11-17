@@ -128,6 +128,33 @@ void Dijkstra()
     }
 }
 
+bool BellmanFord()
+{
+    initialize();
+    for(int i=1; i<numVertices; i++)
+    {
+        for(int u=1; u<=numVertices; u++)
+        {
+            for(int v=1; v<=numVertices; v++)
+            {
+                if(w[u][v] != 0) relax(u, v);
+            }
+        }
+    }
+
+    for(int u=1; u<=numVertices; u++)
+    {
+        for(int v=1; v<=numVertices; v++)
+        {
+            if(w[u][v] != 0)
+            {
+                if(d[v] > d[u]+ w[u][v]) return false;
+            }
+        }
+    }
+    return true;
+}
+
 void print_path(int index)
 {
     if(index== -1) return;
@@ -138,7 +165,10 @@ void print_path(int index)
 int main()
 {
     getInput();
-    Dijkstra();
+    //Dijkstra();
+    bool flag= BellmanFord();
+    if(flag) cout << "true" << endl;
+    else cout << "false"<<endl;
     int ind_destination= getIndexof(destination);
     print_path(ind_destination);
     cout << d[ind_destination] << endl;
